@@ -11,11 +11,8 @@ Installation
 ------------
 1. Copy jirakeycheck.py to ~/.hg (or any dir you like)
 2. Add the following line to $HOME/.hgrc
- 
-
-
-      [hooks]
-      commit = ~/.hg/jira-commit.sh
-      [hooks]
-      pretxncommit.jirakeycheck = python:~/.hg/jirakeycheck.py:checkCommitMessage
-      pretxnchangegroup.jirakeycheckall = python:~/.hg/jirakeycheck.py:checkAllCommitMessage
+```
+[hooks]
+   pretxncommit.jirakeycheck = python:~/.hg/jirakeycheck.py:checkCommitMessage
+   pretxnchangegroup.jirakeycheckall = python:~/.hg/jirakeycheck.py:checkAllCommitMessage
+```
