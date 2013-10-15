@@ -1,8 +1,21 @@
-Mercurial commit message hook for jira
+Mercurial hook for jira
 ==================================
 
-hg commit hook checks that jira key exist in commit message.
+The Mercurial hook checks that jira key exist in commit message.
 
-If no jira key provided, hook fails and commit transaction rolled back.
+If no jira key provided, hook fails and commit transaction rollback.
 
 JIRA projects set in regex of checkMessage function
+
+Installation
+------------
+1. Copy jirakeycheck.py to ~/.hg (or any dir you like)
+2. Add the following line to $HOME/.hgrc
+ 
+
+
+      [hooks]
+      commit = ~/.hg/jira-commit.sh
+      [hooks]
+      pretxncommit.jirakeycheck = python:~/.hg/jirakeycheck.py:checkCommitMessage
+      pretxnchangegroup.jirakeycheckall = python:~/.hg/jirakeycheck.py:checkAllCommitMessage
