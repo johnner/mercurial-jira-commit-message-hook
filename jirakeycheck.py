@@ -3,6 +3,8 @@ import re
 #Если хук возвращает True - условия не удовлетворены, хук отвалится
 BAD_COMMIT = True
 OK = False
+# Jira regexp
+JIRA_RE = '^(JIRAPROJ-\d+|JIRAPROJ2-\d+) - '
 
 def checkCommitMessage(ui, repo, **kwargs):
     """
@@ -54,7 +56,7 @@ def checkMessage(msg):
 	JIRAPROJ-123 - комментарий к коммиту
 	"""
 	is_correct = False
-	p = re.compile('^(JIRAPROJ-\d+|JIRAPROJ2-\d+) - ')
+	p = re.compile(JIRA_RE)
 	r = p.search(msg)
 	if r:
 		is_correct = True
