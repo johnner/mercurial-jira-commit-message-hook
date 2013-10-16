@@ -26,7 +26,6 @@ def checkCommitMessage(ui, repo, **kwargs):
         return BAD_COMMIT
     else:
         return OK
-	return BAD_COMMIT
 
 def checkAllCommitMessage(ui, repo, node, **kwargs):
     """
