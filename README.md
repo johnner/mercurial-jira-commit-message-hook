@@ -18,4 +18,4 @@ Installation
    pretxnchangegroup.jirakeycheckall = python:~/.hg/jirakeycheck.py:checkAllCommitMessage
 </pre>
 </div>
-3. Set your JIRA project keys in `JIRA_RE` regexp in jirakeycheck.py
+3. Set your JIRA project keys in regexp in jirakeycheck.py
