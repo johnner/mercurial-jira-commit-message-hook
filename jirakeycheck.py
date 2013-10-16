@@ -53,6 +53,7 @@ def checkMessage(msg):
 	JIRAPROJ-123 - your commit message here
 	"""
 	is_correct = False
+	#HERE you can set your JIRA Project Names
 	p = re.compile('^(JIRAPROJ-\d+|JIRAPROJ2-\d+) - ')
 	r = p.search(msg)
 	if r:
