@@ -65,5 +65,5 @@ def printUsage(ui):
     ui.warn('=====\n')
     ui.warn('Commit message must have JIRA issue key\n')
     ui.warn('Example:\n')
-    ui.warn('JIRAPRO-42 - the answer to life, universe and everything \n')
+    ui.warn('PRJ-42 - the answer to life, universe and everything \n')
     ui.warn('=====\n')
