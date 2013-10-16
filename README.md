@@ -14,7 +14,10 @@ Installation
 <div>
 <pre>
 [hooks]
+   #check all outgoing commits
    pretxncommit.jirakeycheck = python:~/.hg/jirakeycheck.py:checkCommitMessage
+
+   #Check all incoming commits when you pull. You can remove this line if it's not necessary
    pretxnchangegroup.jirakeycheckall = python:~/.hg/jirakeycheck.py:checkAllCommitMessage
 </pre>
 </div>
