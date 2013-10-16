@@ -1,6 +1,6 @@
 #coding: utf-8
 import re
-#Если хук возвращает True - условия не удовлетворены, хук отвалится
+#If the hook returns True - hook fails
 BAD_COMMIT = True
 OK = False
 
