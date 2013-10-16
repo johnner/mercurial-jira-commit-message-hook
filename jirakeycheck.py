@@ -3,6 +3,8 @@ import re
 #If the hook returns True - hook fails
 BAD_COMMIT = True
 OK = False
+#List of the available JIRA projects
+JIRA_PROJECTS = ['PRJ', 'TEST']
 
 def checkCommitMessage(ui, repo, **kwargs):
     """
@@ -47,14 +49,15 @@ def checkMessage(msg):
     Checks message for matching regex
     
     Correct message example:
-    #"JIRAPROJ-123 -" necessary prefix
-     JIRAPROJ-123 - your commit message here
+    PRJ-123 - your commit message here
+    
+    #"PRJ-123 - " is necessary prefix here
     """
     is_correct = False
-    #HERE you can set your JIRA Project Names
-    p = re.compile('^(JIRAPROJ-\d+|JIRAPROJ2-\d+) - ')
-    r = p.search(msg)
-    if r:
+    re_names = '|'.join(['%s-\d+' % name for name in JIRA_PROJECTS])
+    p = re.compile('^(%s) - ' % re_names)
+    res = p.search(msg)
+    if res:
         is_correct = True
     return is_correct
 
