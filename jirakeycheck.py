@@ -30,7 +30,8 @@ def checkCommitMessage(ui, repo, **kwargs):
 
 def checkAllCommitMessage(ui, repo, node, **kwargs):
     """
-    For push: checks commit messages for all incoming commits
+    For pull: checks commit messages for all incoming commits
+    It is good for master repo, when you pull a banch of commits
     
     [hooks]
     pretxnchangegroup.jirakeycheckall = python:/path/to/jirakeycheck.py:checkAllCommitMessage
