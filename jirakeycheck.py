@@ -3,19 +3,16 @@ import re
 #Если хук возвращает True - условия не удовлетворены, хук отвалится
 BAD_COMMIT = True
 OK = False
-# Jira regexp
-JIRA_RE = '^(JIRAPROJ-\d+|JIRAPROJ2-\d+) - '
 
 def checkCommitMessage(ui, repo, **kwargs):
     """
-	Проверяет сообщение коммита на соответствие правилу
-	Коммит должен содержать номер задачи в JIRA.
-	Пример:
+    	Checks commit message for matching commit rule:
+	Every commit message must include JIRA issue key
+	Example:
 	
 	PRJ-42 - added meaning of life
 
-	Чтобы включить нужно добавить в проектный .hg/hgrc
-	или в локальный hgrc следующее:
+	Include this hook in .hg/hgrc
 
 	[hooks]
 	pretxncommit.jirakeycheck = python:/path/to/jirakeycheck.py:checkCommitMessage
@@ -25,7 +22,7 @@ def checkCommitMessage(ui, repo, **kwargs):
     if(checkMessage(hg_commit_message) == False):
         printUsage(ui)
 		
-		#Все плохо, откатываем транзакцию
+	#reject commit transaction
         return BAD_COMMIT
     else:
         return OK
@@ -33,7 +30,7 @@ def checkCommitMessage(ui, repo, **kwargs):
 
 def checkAllCommitMessage(ui, repo, node, **kwargs):
     """
-	Для push: проверяет сообщения всех входящих коммитов на наличие номера задачи в JIRA
+	For push: checks commit messages for all incoming commits
 	
     [hooks]
 	pretxnchangegroup.jirakeycheckall = python:/path/to/jirakeycheck.py:checkAllCommitMessage
@@ -43,20 +40,20 @@ def checkAllCommitMessage(ui, repo, node, **kwargs):
         if(checkMessage(message) == False):
             ui.warn("Ревизия "+str(rev)+" commit message:["+message+"] | не указан номер задачи JIRA\n")
             printUsage(ui)
-			#Все плохо, откатываем транзакцию
+	    #reject
             return BAD_COMMIT
     return OK
 
 def checkMessage(msg):
 	"""
-	Проверяет сообщение по регулярке
+	Checks message for matching regex
 
-	Пример коммита:
-	#"JIRAPROJ-123 -" необходимый префикс
-	JIRAPROJ-123 - комментарий к коммиту
+	Correct message example:
+	#"JIRAPROJ-123 -" necessary prefix
+	JIRAPROJ-123 - your commit message here
 	"""
 	is_correct = False
-	p = re.compile(JIRA_RE)
+	p = re.compile('^(JIRAPROJ-\d+|JIRAPROJ2-\d+) - ')
 	r = p.search(msg)
 	if r:
 		is_correct = True
@@ -64,7 +61,7 @@ def checkMessage(msg):
 
 def printUsage(ui):
 	ui.warn('=====\n')
-	ui.warn('Комментарий к коммиту должен содержать номер задачи в JIRA\n')
-	ui.warn('Пример:\n')
-	ui.warn('AVIAFE-42 - Ответ на главный вопрос жизни, вселенной и всего такого\n')
+	ui.warn('Commit message must have JIRA issue key\n')
+	ui.warn('Example:\n')
+	ui.warn('JIRAPRO-42 - the answer to life, universe and everything \n')
 	ui.warn('=====\n')
