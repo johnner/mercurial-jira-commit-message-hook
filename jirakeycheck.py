@@ -38,7 +38,7 @@ def checkAllCommitMessage(ui, repo, node, **kwargs):
     for rev in xrange(repo[node].rev(), len(repo)):
         message = repo[rev].description()
         if(checkMessage(message) == False):
-            ui.warn("Ревизия "+str(rev)+" commit message:["+message+"] | не указан номер задачи JIRA\n")
+            ui.warn("Revision "+str(rev)+" commit message:["+message+"] | JIRA issue key is not set\n")
             printUsage(ui)
 	    #reject
             return BAD_COMMIT
