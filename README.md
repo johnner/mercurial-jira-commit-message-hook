@@ -5,7 +5,7 @@ The Mercurial hook checks that jira key exist in commit message.
 
 If no jira key provided, hook fails and commit transaction rollback.
 
-JIRA projects set in the list `JIRA_PROJECTS`
+Available JIRA projects set in the list `JIRA_PROJECTS`
 
 Installation
 ------------
