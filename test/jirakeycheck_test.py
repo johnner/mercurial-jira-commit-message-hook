@@ -6,7 +6,6 @@ from mock import MagicMock, patch
 
 sys.path.append('../')
 import jirakeycheck as jk
-#from jirakeycheck import checkCommitMessage, checkMessage
 
 
 class MockRepo():
