@@ -10,7 +10,7 @@ Available JIRA projects set in the list `JIRA_PROJECTS`
 Installation
 ------------
 1. Copy `jirakeycheck.py` to ~/.hg (or any dir you like)
-2. Add the following line to $HOME/.hgrc
+2. Add the following lines to $HOME/.hgrc
 <div>
 <pre>
 [hooks]
